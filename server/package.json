@@ -1,0 +1,17 @@
+{
+  "name": "3d-text-letter",
+  "version": "1.0.0",
+  "description": "This is the server to store and retrieve the variants of the text parameters changes using the GUI debugger.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon -w *.ts -e ts -x ts-node --files -H -T ./src/index.ts"
+  },
+  "keywords": [
+    "three.js",
+    "threeJS",
+    "threeD"
+  ],
+  "author": "Abdulkarim Alarmanazi",
+  "license": "ISC"
+}

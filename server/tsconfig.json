@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "lib": ["es6"],
+    "module": "commonjs",
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "strict": true
+  },
+  // "ts-node": {
+  //   "esm": true,
+  //   "compilerOptions": {
+  //     "module": "nodenext"
+  //   }
+  // },
+  // "lib": ["es2015"]
+}
