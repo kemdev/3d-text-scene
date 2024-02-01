@@ -23,7 +23,7 @@ import {
   saveScreenshotToFireStorage,
 } from './functions/paramsFunctions';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import popupHandler from './components/popup';
+import popupHandler, { saveScreenshotPopup } from './components/popup';
 import registerUI from './components/register/register';
 
 const gui = new GUI();
@@ -324,15 +324,18 @@ function uploadNewPresetGUI(params: {
     return myPopup;
   };
 
+  const saveNewScreenshot = async () => {
+    const screenshot = await getScreenshotURI();
+    const myPopup = saveScreenshotPopup(screenshot);
+    return myPopup;
+    // saveScreenshotFile({ renderer, scene, camera });
+  };
+
   const loginRegister = async () => {
     registerUI();
   };
 
-  guiAdd({ save: saveNewPreset }, 'save')
-    .name('Save new Preset')
-    .onChange(() => {
-      gui.hide();
-    });
+  guiAdd({ save: saveNewScreenshot }, 'save').name('Save screenshot');
 
   // guiAdd({ save: saveToJSONFileHandler }, 'save').name('save to json');
 }

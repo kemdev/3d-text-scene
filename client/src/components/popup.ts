@@ -1,6 +1,8 @@
 import '../../static/style/popup.scss';
 import {
+  captureScreenshot,
   getPresets,
+  saveScreenshotWithURL,
   setNewPresetToDatabase,
 } from '../functions/paramsFunctions';
 import { gui } from '../guiDebug';
@@ -366,7 +368,47 @@ function result(responseMessage: string, statusCode: number) {
   }
 }
 
-export { popupWindow };
+function saveScreenshotPopup(screenshot: string) {
+  let fileName = '';
+  const headerSection = header();
+  const contents = contentBody(screenshot);
+  const nameContainer = createContainer('name-container');
+
+  const nameLabel = createEl('label', {
+    id: 'name-label',
+    title: 'Enter your name to be shown in the presets.',
+  });
+
+  nameLabel.textContent = 'Your Name';
+  nameLabel.setAttribute('for', 'name-input');
+
+  const nameInput = createEl('input', { id: 'name-input' });
+
+  nameInput.addEventListener('input', function (e: any) {
+    fileName = e?.target?.value;
+  });
+
+  const footerContainer = createContainer('footer-container');
+
+  nameContainer.append(nameLabel, nameInput);
+
+  const hrLine = hr();
+  const footerAction = footerSaveCancelButtons(() =>
+    saveScreenshotWithURL(screenshot, fileName || 'screenshot.png')
+  );
+
+  footerContainer.append(nameContainer, footerAction.container);
+
+  const fullWindow = popupWindow(
+    headerSection,
+    contents,
+    hrLine,
+    footerContainer
+  );
+
+  return fullWindow;
+}
+
 export default function popupHandler(
   screenshot: string,
   new_preset: IPresetsProps,
@@ -375,3 +417,5 @@ export default function popupHandler(
   // TODO add isLoggedIn for the user in the last argument.
   savePresetPopup(screenshot, new_preset, appConfig, appConfig.user.isLoggedIn);
 }
+
+export { popupWindow, saveScreenshotPopup };

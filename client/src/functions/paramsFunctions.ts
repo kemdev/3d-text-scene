@@ -53,9 +53,15 @@ async function saveScreenshotFile({
   scene,
   camera,
 }: IScreenshotProps) {
-  const screenshot = captureScreenshot({ renderer, scene, camera });
-  const screenshotBlob = dataURItoBlob(await screenshot);
+  const screenshot = await captureScreenshot({ renderer, scene, camera });
+  const screenshotBlob = dataURItoBlob(screenshot);
   FileSaver.saveAs(screenshotBlob, 'screenshot.png');
+  return;
+}
+
+async function saveScreenshotWithURL(url: string, name: string) {
+  const screenshotBlob = dataURItoBlob(url);
+  FileSaver.saveAs(screenshotBlob, name);
   return;
 }
 
@@ -172,4 +178,5 @@ export {
   getPresets,
   saveScreenshotToFireStorage,
   setNewPresetToDatabase,
+  saveScreenshotWithURL,
 };
