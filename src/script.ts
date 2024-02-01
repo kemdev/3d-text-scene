@@ -317,7 +317,7 @@ const updatedPresetParams = getPresetTextConfig({
   camera,
 });
 
-const currentFileData = await updatedPresetParams.readData();
+const currentFileData = updatedPresetParams.readData();
 
 text3D(appConfig)
   .then((res: THREE.Mesh) => {
