@@ -1,36 +1,26 @@
 {
-  "name": "12-3d-text",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "threejs-journey-exercise",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "prefix": "client",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "npm run client --prefix client",
-    "server": "npm run server --prefix server",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
-  },
-  "keywords": [
-    "three.js",
-    "threeJS",
-    "threeD"
-  ],
-  "author": "Abdulkarim Alarmanazi",
-  "license": "ISC",
-  "dependencies": {
-    "@types/nodemailer": "^6.4.14",
-    "concurrently": "^8.2.2",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "firebase": "^10.7.1",
-    "firebase-admin": "^12.0.0",
-    "multer": "^1.4.5-lts.1",
-    "nodemailer": "^6.9.8",
-    "typescript": "^5.3.3"
+    "dev": "vite",
+    "client": "vite",
+    "build": "vite build"
   },
   "devDependencies": {
-    "@types/multer": "^1.4.11"
+    "sass": "^1.69.5",
+    "vite": "^4.5.0"
   },
-  "engines": {
-    "node": "18.x"
+  "dependencies": {
+    "@types/file-saver": "^2.0.7",
+    "@types/lodash": "^4.14.202",
+    "@types/three": "^0.159.0",
+    "axios": "^1.6.2",
+    "file-saver": "^2.0.5",
+    "lil-gui": "^0.19.0",
+    "lodash": "^4.17.21",
+    "three": "^0.158.0"
   }
 }
