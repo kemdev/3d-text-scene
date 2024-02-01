@@ -110,7 +110,6 @@ async function getPresets(): Promise<IPresetsProps[] | null> {
     // const result = await axios.get('/presets/get-presets/presets');
     // const data = result.data.data;
     const data = await getPresetsFromFirestore();
-    console.log("🚀 ~ getPresets ~ data:", data)
 
     // NOTE use for later or not
     // const message = result.data.message;

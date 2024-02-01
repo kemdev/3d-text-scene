@@ -128,13 +128,10 @@ export function getPresetTextConfig(obj: {
     }
   }
 
-  function imageClick(
+  function updateObjectsHandler(
     preset: IPresetsProps['preset'],
     img: HTMLButtonElement | HTMLImageElement | null
   ) {
-    // if (currentClickedButton) {
-    //   currentClickedButton.removeAttribute('class');
-    // }
 
     const mapNum = preset.mapNum;
     const geometryParams = { ...preset.geometryParams };
@@ -166,7 +163,6 @@ export function getPresetTextConfig(obj: {
     });
 
     img?.classList.add('active');
-    // currentClickedButton = img;
   }
 
   // Function to create buttons for each variant
@@ -178,7 +174,11 @@ export function getPresetTextConfig(obj: {
       const { _id, created_by, preset, timestamp } = data;
 
       const imageClickHandler = () => {
-        imageClick(preset, img);
+        if (currentClickedButton) {
+          currentClickedButton.classList.remove('active');
+        }
+        updateObjectsHandler(preset, img);
+        currentClickedButton = img;
       };
 
       const img = presetImageWithButtonsUI(
@@ -190,20 +190,19 @@ export function getPresetTextConfig(obj: {
     });
   }
 
-  function updatePresetsVariants(updateValue: IPresetsProps, index: number) {
-    const { preset, created_by, _id } = updateValue;
-    console.log('🚀 ~ updatePresetsVariants ~ preset:', updateValue);
-    const imageClickHandler = () => {
-      imageClick(preset, img);
-    };
+  // function updatePresetsVariants(updateValue: IPresetsProps, index: number) {
+  //   const { preset, created_by, _id } = updateValue;
+  //   const imageClickHandler = () => {
+  //     imageClick(preset, img);
+  //   };
 
-    const img = presetImageWithButtonsUI(
-      preset.screenshot || '/screenshots/variant2.png',
-      created_by + ' - ' + (index + 1),
-      _id,
-      imageClickHandler
-    );
-  }
+  //   const img = presetImageWithButtonsUI(
+  //     preset.screenshot || '/screenshots/variant2.png',
+  //     created_by + ' - ' + (index + 1),
+  //     _id,
+  //     imageClickHandler
+  //   );
+  // }
 
   function deleteButton(currentPresetID) {
     const deleteIcon = document.createElement('span');
@@ -352,10 +351,10 @@ export function getPresetTextConfig(obj: {
     presets = await getPresets();
     createVariantButtons(presets);
 
-    appConfig.updatePresets = function (preset: IPresetsProps) {
-      const index = presets?.length as number;
-      updatePresetsVariants(preset, index + 1);
-    };
+    // appConfig.updatePresets = function (preset: IPresetsProps) {
+    //   const index = presets?.length as number;
+    //   // updatePresetsVariants(preset, index + 1);
+    // };
     return presets;
     // storageImages(presets); // get all the images in the storage!
   }
